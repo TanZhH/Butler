@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/user_frgament_bg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_touxiang"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/add_pic"
+            app:civ_border_color="@color/colorPrimaryDark"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/text_update_user_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/text_bg"
+            android:gravity="center"
+            android:text="@string/text_updateUserMessage"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@color/floralwhite"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/tv_speek"
+                android:textSize="18sp"/>
+
+            <Switch
+                android:id="@+id/sw_speek"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingEnd="25dp"
+                android:paddingStart="25dp"
+                />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:alpha="0.7"
+            android:background="@color/colorPrimary" />
+        
+        
+        <TextView
+            android:id="@+id/tv_update_user_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_editor_password"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:alpha="0.7"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_QRCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_check_Belong"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:alpha="0.7"
+            android:background="@color/colorPrimary" />
+
+
+        <TextView
+            android:id="@+id/tv_personQR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_code"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:alpha="0.7"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_baidunavi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_map_gps"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:alpha="0.7"
+            android:background="@color/colorPrimary" />
+
+
+        <TextView
+            android:id="@+id/text_selectcourier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_courier"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:alpha="0.7"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/text_exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bt_text_logout"
+            android:textSize="18sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:alpha="0.7"
+            android:background="@color/colorPrimary" />
+    </LinearLayout>
+
+</LinearLayout>

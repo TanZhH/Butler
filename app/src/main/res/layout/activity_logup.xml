@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <EditText
+        android:id="@+id/musername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/musername"
+        />
+
+    <EditText
+        android:id="@+id/mpassword2"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/mpassword"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        />
+
+    <EditText
+        android:id="@+id/mpassword3"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/mcompassword"
+        android:layout_marginBottom="15dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/sex"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:layout_weight="1"/>
+
+        <RadioGroup
+            android:id="@+id/msexGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="2"
+            android:layout_marginLeft="15dp">
+
+            <RadioButton
+                android:id="@+id/mman"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:text="@string/man"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:checked="true"
+                />
+
+            <RadioButton
+                android:id="@+id/woman"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:text="@string/woman"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                />
+        </RadioGroup>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/mEmail1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:textSize="20sp"
+        android:layout_marginBottom="15dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="25dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/brith"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/mBrith"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/mcalendar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/calendar_day" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/mlogup"
+        android:background="@drawable/button_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:text="@string/mlogup"/>
+
+</LinearLayout>
