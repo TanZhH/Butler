@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.smartbutler.tanhuihui.butler.MainActivity;
 import com.smartbutler.tanhuihui.butler.R;
 import com.smartbutler.tanhuihui.butler.entity.UserEntity;
+import com.smartbutler.tanhuihui.butler.tinker.TinkerService;
 import com.smartbutler.tanhuihui.butler.utils.LogUtils;
 import com.smartbutler.tanhuihui.butler.utils.SharedUtils;
 import com.smartbutler.tanhuihui.butler.utils.StaticClass;
@@ -70,6 +71,7 @@ public class FlashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_flash);
         initview();
+        startTinkerService();
     }
 
     //初始化
@@ -77,7 +79,7 @@ public class FlashActivity extends AppCompatActivity {
 //        app_name = (TextView) findViewById(R.id.mfalshText);
 //        //设置字体
 //        UtilTools.setFontType(this,"fonts/FONT.TTF",app_name);
-        handler.sendEmptyMessageDelayed(StaticClass.HANDLER_SFLASH,2000);
+        handler.sendEmptyMessageDelayed(StaticClass.HANDLER_SFLASH,1000);
     }
 
     //判断是否为第一次运行
@@ -89,5 +91,11 @@ public class FlashActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    //开启tinker服务
+    private void startTinkerService() {
+        Intent intent = new Intent(this, TinkerService.class);
+        startService(intent);
     }
 }

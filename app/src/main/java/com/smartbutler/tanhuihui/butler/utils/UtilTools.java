@@ -1,6 +1,7 @@
 package com.smartbutler.tanhuihui.butler.utils;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -66,5 +67,18 @@ public class UtilTools {
             Bitmap bitmap = BitmapFactory.decodeStream(byteArrayInputStream);
             imageView.setImageBitmap(bitmap);
         }
+    }
+
+    //获取版本号
+    public static String getVersion(Context context){
+        String version = "1.0.0";
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            PackageInfo info = packageManager.getPackageInfo(context.getPackageName(),0);
+            version = info.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return version;
     }
 }

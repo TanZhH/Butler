@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.smartbutler.tanhuihui.butler.MainActivity;
 import com.smartbutler.tanhuihui.butler.R;
+import com.smartbutler.tanhuihui.butler.tinker.TinkerService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,7 @@ public class GuideActivity extends AppCompatActivity implements ViewPager.OnPage
         setAdapter();
         setlistener();
     }
+
 
     private void setlistener() {
         //设置滑动监听

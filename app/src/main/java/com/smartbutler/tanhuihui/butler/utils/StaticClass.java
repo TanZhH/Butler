@@ -35,7 +35,7 @@ public class StaticClass {
     //微信精选APP_KEY
     public static final String WECHAT_NEW_APP_KEY = "0d7846b5de143a870caa6cca6bb74864";
     //精选图片接口接口
-    public static final String GRIL_PICTURE = "http://gank.io/api/search/query/listview/category/%E7%A6%8F%E5%88%A9/count/10/page/";
+    public static final String GRIL_PICTURE = "http://gank.io/api/data/%E7%A6%8F%E5%88%A9/10/";
     //科大讯飞
     public static final String TTS_KEY = "5959b9f0";
     //扫一扫返回码

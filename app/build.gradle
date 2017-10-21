@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+def javaVersion = JavaVersion.VERSION_1_8
+def bakPath = file("${buildDir}/bakApk/") //指定基准文件存放位置
 
 android {
     compileSdkVersion 25
@@ -16,9 +18,24 @@ android {
             abiFilters 'armeabi',"x86"//, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
     }
+
+    signingConfigs{
+        release {
+            try {
+                storeFile file("release.jks")
+                storePassword "719800"
+                keyAlias "release"
+                keyPassword "719800"
+            }catch (ex){
+                throw new InvalidUserDataException(ex.toString());
+            }
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -68,4 +85,133 @@ dependencies {
     //baidu地图依赖
     compile files('libs/BaiduLBS_Android.jar')
     compile files('libs/httpmime-4.1.2.jar')
+    //tinker热修复
+    //optional, help to generate the final application
+    provided("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}"){changing = true}
+    //tinker's main Android lib
+    compile("com.tencent.tinker:tinker-android-lib:${TINKER_VERSION}"){changing = true}
+ }
+
+ext{
+    tinkerEnable = true
+    tinkerOldApkPath = "${bakPath}/app-release-1018-18-34-02.apk"
+    tinkerID="1.0"
+    tinkerApplyMappingPath = "${bakPath}/app-release-1018-18-34-02-mapping.txt"
+    tinkerApplyResourcePath = "${bakPath}/app-release-1018-18-34-02-R.txt"
 }
+
+def buildWithTinker(){
+    return ext.tinkerEnable
+}
+
+def getOldApkPath(){
+    return ext.tinkerOldApkPath
+}
+
+def getApplyResourcePath(){
+    return ext.tinkerApplyResourcePath
+}
+
+def getTinkerIdValue(){
+    return ext.tinkerID
+}
+
+def getApplyMappingPath(){
+    return ext.tinkerApplyMappingPath
+}
+
+
+
+if(buildWithTinker()){
+    //启用tinker
+    apply plugin: 'com.tencent.tinker.patch'
+    //所有tinker相关的参数配置
+    tinkerPatch{
+        oldApk = getOldApkPath() //指定old apk文件径
+        ignoreWarning = false  //不忽略tinker的警告，有则中止patch文件的生成
+        useSign = true     //强制patch文件也使用签名
+        tinkerEnable = buildWithTinker()   //指定是否启用tinker
+        buildConfig{
+            applyMapping = getApplyMappingPath()  //指定old apk打包时所使用的混淆文件
+            applyResourceMapping = getApplyResourcePath()  //指定old apk的资源文件
+            tinkerId = getTinkerIdValue()   //指定TinkerID
+            keepDexApply = false
+        }
+
+        dex{
+            //只能是'raw'或者'jar'。
+            //对于'raw'模式，我们将会保持输入dex的格式。
+            //对于'jar'模式，我们将会把输入dex重新压缩封装到jar。
+            // 如果你的minSdkVersion小于14，你必须选择‘jar’模式，而且它更省存储空间，
+            // 但是验证md5时比'raw'模式耗时。
+            // 默认我们并不会去校验md5,一般情况下选择jar模式即可。
+            dexMode="jar" //jar raw
+            pattern = ["classes*.dex" , "assets/secondary-dex-?.jar"] //指定dex文件目录
+            loader = ["com.smartbutler.tanhuihui.butler.tinker.MyTinkerApplication"] // //指定加载patch文件时用到的类
+        }
+
+        lib{
+            pattern=["jniLibs/*/*.so"]
+        }
+
+        res{
+            //指定tinker可以修改的资源路径
+            pattern = ["res/*","assets/*","resources.arsc","AndroidManifest.xml"]
+            largeModSize=100 //资源修改大小默认值
+        }
+
+        packageConfig{
+            configField("patchMessage" , "add function hot-fix to the app")
+            configField("patchVersion" , "1.0")
+        }
+    }
+
+    List<String> flavors = new ArrayList<>();
+    project.android.productFlavors.each { flavor ->
+        flavors.add(flavor.name)
+    }
+    boolean hasFlavors = flavors.size() > 0
+    /**
+     * bak apk and mapping
+     */
+    android.applicationVariants.all { variant ->
+        /**
+         * task type, you want to bak
+         */
+        def taskName = variant.name
+        def date = new Date().format("MMdd-HH-mm-ss")
+
+        tasks.all {
+            if ("assemble${taskName.capitalize()}".equalsIgnoreCase(it.name)) {
+
+                it.doLast {
+                    copy {
+                        def fileNamePrefix = "${project.name}-${variant.baseName}"
+                        def newFileNamePrefix = hasFlavors ? "${fileNamePrefix}" : "${fileNamePrefix}-${date}"
+
+                        def destPath = hasFlavors ? file("${bakPath}/${project.name}-${date}/${variant.flavorName}") : bakPath
+                        from variant.outputs.outputFile
+                        into destPath
+                        rename { String fileName ->
+                            fileName.replace("${fileNamePrefix}.apk", "${newFileNamePrefix}.apk")
+                        }
+
+                        from "${buildDir}/outputs/mapping/${variant.dirName}/mapping.txt"
+                        into destPath
+                        rename { String fileName ->
+                            fileName.replace("mapping.txt", "${newFileNamePrefix}-mapping.txt")
+                        }
+
+                        from "${buildDir}/intermediates/symbols/${variant.dirName}/R.txt"
+                        into destPath
+                        rename { String fileName ->
+                            fileName.replace("R.txt", "${newFileNamePrefix}-R.txt")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+

@@ -57,7 +57,7 @@ public class PictFragment extends Fragment {
     //是否进行刷新
     private boolean isfreshing = false;
     //当前页数
-    private int curPage = (int) (Math.random()*100);
+    private int curPage = (int) (Math.random()*50);
     private String URL = StaticClass.GRIL_PICTURE + curPage;
     //弹出框
     private Dialog dialog;
@@ -91,7 +91,7 @@ public class PictFragment extends Fragment {
                     //当滑到最底，且没在刷新
                     if (isScrollBottom && !isfreshing) {
                         //页数加1
-                        curPage = (int) (Math.random()*100);
+                        curPage = (int) (Math.random()*50);
                         URL = StaticClass.GRIL_PICTURE + curPage;
                         isfreshing = true;
                         gv_picture.setSelection(gv_picture.getCount());
@@ -152,6 +152,12 @@ public class PictFragment extends Fragment {
         pb_picture = (ProgressBar) view.findViewById(R.id.pb_picture);
         //加载图片
         RxVolley.get(URL, new HttpCallback() {
+            @Override
+            public void onPreStart() {
+                super.onPreStart();
+                pb_picture.setVisibility(View.VISIBLE);
+            }
+
             @Override
             public void onSuccessInAsync(byte[] s) {
                 String t = new String(s);

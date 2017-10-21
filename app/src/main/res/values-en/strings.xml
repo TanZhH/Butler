@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Butler</string>
-    <string name="butler_str">Butler</string>
-    <string name="wechat_str">Wechat</string>
-    <string name="picture_str">Picture</string>
-    <string name="setting_str">Setting</string>
-    <string name="setting_text">Setting</string>
-    <string name="comein_main">进入主页</string>
+    <string name="app_name">生活管家</string>
+    <string name="butler_str">生活管家</string>
+    <string name="wechat_str">微信精选</string>
+    <string name="picture_str">图片精选</string>
+    <string name="setting_str">个人中心</string>
+    <string name="setting_text">设置</string>
+    <string name="comein_main">登录</string>
     <string name="username">用户名</string>
     <string name="password">密码</string>
     <string name="login">登录</string>
@@ -16,7 +16,7 @@
     <string name="musername">用户名</string>
     <string name="mpassword">密码</string>
     <string name="mcompassword">确定密码</string>
-    <string name="sex">性别</string>
+    <string name="sex">性别:</string>
     <string name="man">男</string>
     <string name="woman">女</string>
     <string name="brith">出生日期：</string>
@@ -27,16 +27,18 @@
     <string name="notsame">两次密码不一致</string>
     <string name="null_str">输入框不能为空</string>
     <string name="text_editor_password">修改密码</string>
-    <string name="text_now_password">新密码</string>
+    <string name="text_now_password">原密码</string>
     <string name="ed_new_password">新密码</string>
-    <string name="text_update_password_email">邮箱修改</string>
+    <string name="text_update_password_email">通过邮箱修改</string>
     <string name="et_email">邮箱</string>
     <string name="text_loading">登录中</string>
     <string name="bt_text_logout">退出登录</string>
     <string name="text_updateUserMessage"> 编辑资料 </string>
     <string name="text_username">用户名:</string>
     <string name="text_code">个人二维码</string>
+    <string name="text_map_gps">地图导航</string>
     <string name="text_courier">物流查询</string>
+    <string name="text_check_Belong">扫一扫</string>
     <string name="text_picture">相册</string>
     <string name="text_phone">拍照</string>
     <string name="text_cancel">取消</string>
@@ -50,6 +52,8 @@
     <string name="tv_speek">开启语音播报功能</string>
     <string name="tv_flash_light">闪光灯</string>
     <string name="tv_from_album">从相册中选择</string>
+    <string name="bt_location">查询</string>
     <string name="et_mylocation">我的位置</string>
+    <string name="et_fromlocation">从这里出发</string>
     <string name="et_tolocation">终点</string>
 </resources>

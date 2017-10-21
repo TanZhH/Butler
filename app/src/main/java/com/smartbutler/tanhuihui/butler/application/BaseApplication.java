@@ -12,19 +12,18 @@ import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import cn.bmob.v3.Bmob;
 
 /**
- * 创建者：    TANHUIHUI
- * 项  目：    Butler
- * 包  名：    com.smartbutler.tanhuihui.butler.application
- * 创建日期：  2017/6/5
- * 描  述：    Application
+ * 创建者：   TANHUIHUI
+ * 项  目：   Butler
+ * 包  名：   com.smartbutler.tanhuihui.butler.application
+ * 创建日期： 2017/10/7
+ * 描  述：
  */
 
 public class BaseApplication extends Application {
-    //创建
+
     @Override
     public void onCreate() {
         super.onCreate();
-
         //初始化 bugly 设置
         CrashReport.initCrashReport(getApplicationContext(), StaticClass.BUGLY_APP_ID, true);
 
@@ -40,6 +39,4 @@ public class BaseApplication extends Application {
         //百度地图定位
         SDKInitializer.initialize(getApplicationContext());
     }
-
-
 }

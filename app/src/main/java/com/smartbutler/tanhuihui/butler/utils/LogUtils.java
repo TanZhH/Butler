@@ -12,7 +12,7 @@ import android.util.Log;
 
 public class LogUtils {
     private static final String TAG = "bulter";
-    private static final boolean bool = true;
+    private static final boolean bool = false;
 
     public static void i(String text){
         if(bool)

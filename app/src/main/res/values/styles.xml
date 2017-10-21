@@ -16,8 +16,8 @@
         <!--是否有遮盖-->
         <item name="android:windowContentOverlay">@null</item>
         <!--&lt;!&ndash;背景&ndash;&gt;-->
-        <!--<item name="android:background">@mipmap/flash</item>-->
-        <item name="android:windowBackground">@mipmap/flash</item>
+        <item name="android:background">@mipmap/flash</item>
+        <!--<item name="android:windowBackground">@mipmap/flash</item>-->
     </style>
 
 
